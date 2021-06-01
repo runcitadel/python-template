@@ -1,0 +1,26 @@
+version: "3.7"
+
+services:
+  app:
+    # Replace this with your actual Docker image
+    image: "yourusername/python-app-example:main"
+    stop_grace_period: "10s"
+    volumes:
+      - "${APP_DATA_DIR}/screenshots:/usr/screenshots"
+      - "${APP_DATA_DIR}/data.json:/usr/data.json"
+      - "${LND_DATA_DIR}:/app/lnd:ro"
+    environment:
+      - "BITCOIN_IP=${BITCOIN_IP}"
+      - "BITCOIN_RPC_USER=${BITCOIN_RPC_USER}"
+      - "BITCOIN_RPC_PASS=${BITCOIN_RPC_PASS}"
+      - "BITCOIN_RPC_PORT=${BITCOIN_RPC_PORT}"
+      - "LND_IP=${LND_IP}"
+      - "LND_GRPC_PORT=${LND_GRPC_PORT}"
+      - "BTC_NETWORK=${BITCOIN_NETWORK}"
+    ports:
+            # In an actual app, this is defined by an env var, but for testing, this is fine
+        - "9999:9999"
+    networks:
+        default:
+            # In an actual app, this is defined by an env var, but for testing, this is fine
+            ipv4_address: 10.21.21.99
