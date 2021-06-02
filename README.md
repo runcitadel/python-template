@@ -46,4 +46,4 @@ Also, when your app has multiple containers, please adjust docker-compose.yml so
 
 ---
 
-Inspired by [PiDisplay](https://github.com/PiDisplay/PiDisplay), an open-source project Edd Williams and me built.
+Inspired by [PiDisplay](https://github.com/PiDisplay/PiDisplay-old), an open-source project Edd Williams and me built.
