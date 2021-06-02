@@ -6,9 +6,6 @@ on:
             - master
             - main
 
-env:
-  DOCKER_CLI_EXPERIMENTAL: enabled
-
 jobs:
   build:
     name: Build image
@@ -35,10 +32,6 @@ jobs:
         uses: docker/setup-buildx-action@v1
         id: buildx
 
-      - name: Show available Docker buildx platforms
-        run: echo ${{ steps.buildx.outputs.platforms }}
-
-     
       - name: Run Docker buildx
         run: |
                 docker buildx build \

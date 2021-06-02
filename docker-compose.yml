@@ -6,8 +6,7 @@ services:
     image: "yourusername/python-app-example:main"
     stop_grace_period: "10s"
     volumes:
-      - "${APP_DATA_DIR}/screenshots:/usr/screenshots"
-      - "${APP_DATA_DIR}/data.json:/usr/data.json"
+      - "${APP_DATA_DIR}:/app/data"
       - "${LND_DATA_DIR}:/app/lnd:ro"
     environment:
       - "BITCOIN_IP=${BITCOIN_IP}"

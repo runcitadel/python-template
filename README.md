@@ -8,8 +8,8 @@ The `docker-compose.yml` should only be used in the Umbrel app, and shouldn't re
 
 To set up builds, please follow these steps:
 
-1. Fork this repo on Github.
-1. Go to the actions tab on your fork. If it asks you to confirm the workflows, select "I understand my workflows, go ahead and enable them".
+1. Create your repository from this template using the "Use this template" button.
+1. Go to the actions tab on your repo. If it asks you to confirm the workflows, select "I understand my workflows, go ahead and enable them".
 1. Now, go to the repository settings and configure the secrets listed below.
 1. Push to the master branch and enjoy automated builds. Make sure to change the name of your docker container in `.github/workflows/push.yml` and `.github/workflows/tag.yml` in the first commit.
 
@@ -38,6 +38,12 @@ Then, run the `generate-lnd-headers.sh` script:
 You can replace `v0.12.1-beta` with the tag/branch of the [LND GitHub repo](https://github.com/lightningnetwork/lnd) you want to use.
 Please make sure to not use a version that is later than what's currently included in Umbrel (LND 0.12.1 in Umbrel 0.3.10).
 
+### Data storage in your app
+
+In the final docker container, you app will be in `/app`, and all data should be in `/app/data`, which is mounted to the correct data directory on Umbrel.
+So, when storing any persistent data. please us the "data" subdirectory of your app.
+Also, when your app has multiple containers, please adjust docker-compose.yml so every app gets its own subdir of `${APP_DATA_DIR}` for its data (subdirectory on the host, in the container, it can still have the same mountpoint).
+
 ---
 
-Based on [PiDisplay](https://github.com/PiDisplay/PiDisplay), an open-source project Edd Williams and me built.
+Inspired by [PiDisplay](https://github.com/PiDisplay/PiDisplay), an open-source project Edd Williams and me built.
